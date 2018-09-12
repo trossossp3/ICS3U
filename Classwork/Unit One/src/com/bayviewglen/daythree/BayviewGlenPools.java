@@ -34,25 +34,29 @@ public class BayviewGlenPools {
 		double deepBottomSA = deepLength * width;
 		double deepBackWallSA = width * deepDepth;
 		double deepSA = deepBackWallSA + deepBottomSA + deepSidesSA;
-		
-		//shallow SA
+
+		// shallow SA
 		double shallowSidesSA = (shallowLength * shallowDepth) * 2; // two sides
 		double shallowFrontSA = shallowDepth * width;
 		double shallowBottomSA = shallowLength * width;
 		double shallowSA = shallowSidesSA + shallowFrontSA + shallowBottomSA;
-		
-		//trans SA
-		
-		double transSidesSA = (deepDepth*xTransLength) - (0.5*(xTransLength*transHeight)) *2;
+
+		// transition SA
+
+		double transSidesSA = (deepDepth * xTransLength) - (0.5 * (xTransLength * transHeight)) * 2;
 		double transBottomSA = transHypo * width;
 		double transSA = transBottomSA * transSidesSA;
-		
-		//total SA
-		
+
+		// total SA
+
 		double totalSA = deepSA + shallowSA + transSA;
-		
-		//
-		
+
+		// final steps
+
+		System.out.println("90% of pool filled: " + totalVolume * 0.9);
+		System.out.println("the amount of liner needed: " + totalSA);
+		System.out.println("total cost: " + totalSA * price);
+
 	}
 
 }
