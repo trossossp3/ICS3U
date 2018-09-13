@@ -2,13 +2,13 @@ package com.bayviewglen.daythree;
 
 public class BayviewGlenPools {
 	public static void main(String[] args) {
-		double length = 0;
-		double width = 0;
-		double shallowDepth = 0;
-		double deepDepth = 0;
-		double shallowLength = 0;
-		double transHypo = 0;
-		double price = 0;
+		double length = 15;
+		double width = 5;
+		double shallowDepth = 2;
+		double deepDepth = 4;
+		double shallowLength = 9;
+		double transHypo = 5;
+		double price = 2.4;
 
 		// transition section finding lengths
 		double transHeight = deepDepth - shallowDepth;
@@ -50,6 +50,8 @@ public class BayviewGlenPools {
 		// total SA
 
 		double totalSA = deepSA + shallowSA + transSA;
+		
+		System.out.println(deepSA + " "+ shallowSA + " "+ transSA);
 
 		// final steps
 
