@@ -45,7 +45,6 @@ public class BayviewGlenPools {
 		// transition SA
 
 		double transSidesSA = ((deepDepth * xTransLength) - (xTransLength * transHeight/2)) * 2;
-		System.out.println(transSidesSA);
 		double transBottomSA = transHypo * width;
 		double transSA = transBottomSA + transSidesSA;
 		double totalSA = deepSA + shallowSA + transSA;
@@ -53,10 +52,11 @@ public class BayviewGlenPools {
 		
 
 		// final steps
+		System.out.println("90% of pool filled ≈ " + (double)Math.round((totalVolume * 0.9)*100)/100 + " meters cubed");
 		
-		System.out.println("90% of pool filled: " + totalVolume * 0.9);
-		System.out.println("the amount of liner needed: " + totalSA);
-		System.out.println("total cost: " + totalSA * price);
+		System.out.println("the amount of liner needed ≈ " + (double)Math.round(totalSA*100)/100 + " meters squared");
+		
+		System.out.println("total cost ≈ " + "$" + (double)Math.round((totalSA * price)*100)/100);
 		
 		
 		
