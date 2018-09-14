@@ -7,7 +7,7 @@ public class ExampleTwo {
 		
 		int digit1 = number / 1000; 		//get first diget
 		int digit5 = number % 10; 			//get second digit
-		int digit2 = number / 1000 %10; 	// 18934 / 1000 = 18 % 10 =9
+		int digit2 = number / 1000 %10; 	// 18934 / 1000 = 18 % 10 =8
 		int digit3 = number /100 %10;		//18934 /100 =189 %10 = 9
 		//or
 		//digit3 = number % 1000/100		//18934 %1000 = 934/100 = 9
