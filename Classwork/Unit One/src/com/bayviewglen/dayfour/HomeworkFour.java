@@ -16,7 +16,7 @@ public class HomeworkFour {
 		System.out.println("insert time");
 		double t = in.nextDouble();
 		
-		System.out.println("the velocity is: " + Vi + a*t );
+		System.out.println("the velocity is: " + Vi + (a*t) );
 		
 	}
 
