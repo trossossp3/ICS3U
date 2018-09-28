@@ -7,6 +7,8 @@ public class CrossCountry {
 
 		Scanner in = new Scanner(System.in);
 
+		final int SECONDS_IN_MINUTE = SECONDS_IN_MINUTE;
+
 		// getting first and last name runner 1
 		System.out.print("Please enter Name of Runner1(First name Last name): ");
 		String fullName = in.nextLine();
@@ -38,23 +40,23 @@ public class CrossCountry {
 		runner1Mile3Seconds = Double.parseDouble(runner1Mile3.substring(colon + 1));
 
 		// finding totals in seconds
-		double runner1Mile1Sec = runner1Mile1Minutes * 60 + runner1Mile1Seconds;
-		double runner1Mile2Sec = runner1Mile2Minutes * 60 + runner1Mile2Seconds;
-		double runner1Mile3Sec = runner1Mile3Minutes * 60 + runner1Mile3Seconds;
+		double runner1Mile1Sec = runner1Mile1Minutes * SECONDS_IN_MINUTE + runner1Mile1Seconds;
+		double runner1Mile2Sec = runner1Mile2Minutes * SECONDS_IN_MINUTE + runner1Mile2Seconds;
+		double runner1Mile3Sec = runner1Mile3Minutes * SECONDS_IN_MINUTE + runner1Mile3Seconds;
 		// finding mile times values
 		double runner1Mile2SecTime = runner1Mile2Sec - runner1Mile1Sec;
 		double runner1Mile3SecTime = runner1Mile3Sec - runner1Mile2Sec;
 
 		// making the time minutes and seconds
 		// mile 1
-		int runner1Mile1FinalMins = (int) (runner1Mile1Sec / 60);
-		double runner1Mile1FinalSecs = runner1Mile1Sec % 60;
+		int runner1Mile1FinalMins = (int) (runner1Mile1Sec / SECONDS_IN_MINUTE);
+		double runner1Mile1FinalSecs = runner1Mile1Sec % SECONDS_IN_MINUTE;
 		// mile 2
-		int runner1Mile2FinalMins = (int) (runner1Mile2SecTime / 60);
-		double runner1Mile2FinalSecs = runner1Mile2SecTime % 60;
+		int runner1Mile2FinalMins = (int) (runner1Mile2SecTime / SECONDS_IN_MINUTE);
+		double runner1Mile2FinalSecs = runner1Mile2SecTime % SECONDS_IN_MINUTE;
 		// mile 3
-		int runner1Mile3FinalMins = (int) (runner1Mile3SecTime / 60);
-		double runner1Mile3FinalSecs = runner1Mile3SecTime % 60;
+		int runner1Mile3FinalMins = (int) (runner1Mile3SecTime / SECONDS_IN_MINUTE);
+		double runner1Mile3FinalSecs = runner1Mile3SecTime % SECONDS_IN_MINUTE;
 
 		// Printing stuff
 		System.out.println("\n\nRunner One Breakdown");
@@ -105,23 +107,23 @@ public class CrossCountry {
 		runner2Mile3Seconds = Double.parseDouble(runner2Mile3.substring(colon + 1));
 
 		// finding totals in seconds
-		double runner2Mile1Sec = runner2Mile1Minutes * 60 + runner2Mile1Seconds;
-		double runner2Mile2Sec = runner2Mile2Minutes * 60 + runner2Mile2Seconds;
-		double runner2Mile3Sec = runner2Mile3Minutes * 60 + runner2Mile3Seconds;
+		double runner2Mile1Sec = runner2Mile1Minutes * SECONDS_IN_MINUTE + runner2Mile1Seconds;
+		double runner2Mile2Sec = runner2Mile2Minutes * SECONDS_IN_MINUTE + runner2Mile2Seconds;
+		double runner2Mile3Sec = runner2Mile3Minutes * SECONDS_IN_MINUTE + runner2Mile3Seconds;
 		// finding mile times values
 		double runner2Mile2SecTime = runner2Mile2Sec - runner2Mile1Sec;
 		double runner2Mile3SecTime = runner2Mile3Sec - runner2Mile2Sec;
 
 		// making the time minutes and seconds
 		// mile 1
-		int runner2Mile1FinalMins = (int) (runner2Mile1Sec / 60);
-		double runner2Mile1FinalSecs = runner2Mile1Sec % 60;
+		int runner2Mile1FinalMins = (int) (runner2Mile1Sec / SECONDS_IN_MINUTE);
+		double runner2Mile1FinalSecs = runner2Mile1Sec % SECONDS_IN_MINUTE;
 		// mile 2
-		int runner2Mile2FinalMins = (int) (runner2Mile2SecTime / 60);
-		double runner2Mile2FinalSecs = runner2Mile2SecTime % 60;
+		int runner2Mile2FinalMins = (int) (runner2Mile2SecTime / SECONDS_IN_MINUTE);
+		double runner2Mile2FinalSecs = runner2Mile2SecTime % SECONDS_IN_MINUTE;
 		// mile 3
-		int runner2Mile3FinalMins = (int) (runner2Mile3SecTime / 60);
-		double runner2Mile3FinalSecs = runner2Mile3SecTime % 60;
+		int runner2Mile3FinalMins = (int) (runner2Mile3SecTime / SECONDS_IN_MINUTE);
+		double runner2Mile3FinalSecs = runner2Mile3SecTime % SECONDS_IN_MINUTE;
 
 		// Printing stuff
 		System.out.println("\n\nRunner Two Breakdown");
@@ -172,23 +174,23 @@ public class CrossCountry {
 		runner3Mile3Seconds = Double.parseDouble(runner3Mile3.substring(colon + 1));
 
 		// finding totals in seconds
-		double runner3Mile1Sec = runner3Mile1Minutes * 60 + runner3Mile1Seconds;
-		double runner3Mile2Sec = runner3Mile2Minutes * 60 + runner3Mile2Seconds;
-		double runner3Mile3Sec = runner3Mile3Minutes * 60 + runner3Mile3Seconds;
+		double runner3Mile1Sec = runner3Mile1Minutes * SECONDS_IN_MINUTE + runner3Mile1Seconds;
+		double runner3Mile2Sec = runner3Mile2Minutes * SECONDS_IN_MINUTE + runner3Mile2Seconds;
+		double runner3Mile3Sec = runner3Mile3Minutes * SECONDS_IN_MINUTE + runner3Mile3Seconds;
 		// finding mile times values
 		double runner3Mile2SecTime = runner3Mile2Sec - runner3Mile1Sec;
 		double runner3Mile3SecTime = runner3Mile3Sec - runner3Mile2Sec;
 
 		// making the time minutes and seconds
 		// mile 1
-		int runner3Mile1FinalMins = (int) (runner3Mile1Sec / 60);
-		double runner3Mile1FinalSecs = runner3Mile1Sec % 60;
+		int runner3Mile1FinalMins = (int) (runner3Mile1Sec / SECONDS_IN_MINUTE);
+		double runner3Mile1FinalSecs = runner3Mile1Sec % SECONDS_IN_MINUTE;
 		// mile 2
-		int runner3Mile2FinalMins = (int) (runner3Mile2SecTime / 60);
-		double runner3Mile2FinalSecs = runner3Mile2SecTime % 60;
+		int runner3Mile2FinalMins = (int) (runner3Mile2SecTime / SECONDS_IN_MINUTE);
+		double runner3Mile2FinalSecs = runner3Mile2SecTime % SECONDS_IN_MINUTE;
 		// mile 3
-		int runner3Mile3FinalMins = (int) (runner3Mile3SecTime / 60);
-		double runner3Mile3FinalSecs = runner3Mile3SecTime % 60;
+		int runner3Mile3FinalMins = (int) (runner3Mile3SecTime / SECONDS_IN_MINUTE);
+		double runner3Mile3FinalSecs = runner3Mile3SecTime % SECONDS_IN_MINUTE;
 
 		// Printing stuff
 		System.out.println("\n\nRunner Three Breakdown");
