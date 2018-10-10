@@ -32,6 +32,20 @@ public class test {
 		
 		
 		
-		
+		System.out.println("\n\nRunner One Breakdown");
+		System.out.println("#################\n");
+		System.out.printf("Runner: %s, %s\n", lastName, firstName);
+		System.out.printf("-----------------------------------\n", "");
+		System.out.printf("%1sSplit 1", "", "");
+		System.out.printf("%5sSplit 2", "", "");
+		System.out.printf("%5sSplit 3\n", "", "");
+		// the spacing only works when the minutes are two digits
+
+		System.out.printf("%1s%03d:%-2.2f", "", runner1Mile1FinalMins, runner1Mile1FinalSecs, "");
+		System.out.printf("%4s%03d:%-2.2f", "", runner1Mile2FinalMins, runner1Mile2FinalSecs, "");
+		System.out.printf("%4s%03d:%-2.2f\n", "", runner1Mile3FinalMins, runner1Mile3FinalSecs, "");
+		System.out.printf("-----------------------------------\n", args);
+		System.out.printf("Total Time: %d:%.2f", runner1Mile3Minutes, runner1Mile3Seconds);
+
 	}
 }

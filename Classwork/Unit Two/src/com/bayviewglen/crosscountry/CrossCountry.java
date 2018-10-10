@@ -1,7 +1,13 @@
 package com.bayviewglen.crosscountry;
 
 import java.util.Scanner;
-
+/*
+ * Name: 
+ * Author:
+ * Date: 
+ * Description: A couple lines...
+ * 
+ */
 public class CrossCountry {
 	public static void main(String[] args) {
 
@@ -13,7 +19,8 @@ public class CrossCountry {
 		System.out.print("Please enter Name of Runner1(First name Last name): ");
 		String fullName = in.nextLine();
 		String runner1FirstName = fullName.substring(0, fullName.indexOf(" "));
-		String runner1LastName = fullName.substring(fullName.indexOf(" "));
+		String runner1LastName = fullName.substring(fullName.indexOf(" ")+1);
+		
 		// getting mile one numbers
 		System.out.print(runner1FirstName + ", please eneter your Mile 1 Time (mm:ss.sss): ");
 		String runner1Mile1 = in.nextLine();
@@ -43,6 +50,7 @@ public class CrossCountry {
 		double runner1Mile1Sec = runner1Mile1Minutes * SECONDS_IN_MINUTE + runner1Mile1Seconds;
 		double runner1Mile2Sec = runner1Mile2Minutes * SECONDS_IN_MINUTE + runner1Mile2Seconds;
 		double runner1Mile3Sec = runner1Mile3Minutes * SECONDS_IN_MINUTE + runner1Mile3Seconds;
+		
 		// finding mile times values
 		double runner1Mile2SecTime = runner1Mile2Sec - runner1Mile1Sec;
 		double runner1Mile3SecTime = runner1Mile3Sec - runner1Mile2Sec;
@@ -62,16 +70,18 @@ public class CrossCountry {
 		System.out.println("\n\nRunner One Breakdown");
 		System.out.println("#################\n");
 		System.out.printf("%-20s%s\n", "Runner Name", runner1LastName + "," + runner1FirstName);
-		System.out.printf("%-20s%d:%06.3f\n", "Split One", runner1Mile1FinalMins, runner1Mile1FinalSecs);
+		System.out.printf("\n%-20s%d:%06.3f\n", "Split One", runner1Mile1FinalMins, runner1Mile1FinalSecs);
 		System.out.printf("%-20s%d:%06.3f\n", "Split Two", runner1Mile2FinalMins, runner1Mile2FinalSecs);
 		System.out.printf("%-20s%d:%06.3f\n", "Split Three", runner1Mile3FinalMins, runner1Mile3FinalSecs);
+		
+		
 		// runner two
 
 		// getting first and last name runner
-		System.out.print("\n\n\nPlease enter Name of Runner2(First name Last name): ");
+		System.out.print("\nPlease enter Name of Runner2(First name Last name): ");
 		fullName = in.nextLine();
 		String runner2FirstName = fullName.substring(0, fullName.indexOf(" "));
-		String runner2LastName = fullName.substring(fullName.indexOf(" "));
+		String runner2LastName = fullName.substring(fullName.indexOf(" ")+1);
 		// getting mile one numbers
 		System.out.print(runner2FirstName + ", please eneter your Mile 1 Time (mm:ss.sss): ");
 		String runner2Mile1 = in.nextLine();
@@ -120,17 +130,17 @@ public class CrossCountry {
 		System.out.println("\n\nRunner Two Breakdown");
 		System.out.println("#################\n");
 		System.out.printf("%-20s%s\n", "Runner Name", runner2LastName + "," + runner2FirstName);
-		System.out.printf("%-20s%d:%06.3f\n", "Split One", runner2Mile1FinalMins, runner2Mile1FinalSecs);
+		System.out.printf("\n%-20s%d:%06.3f\n", "Split One", runner2Mile1FinalMins, runner2Mile1FinalSecs);
 		System.out.printf("%-20s%d:%06.3f\n", "Split Two", runner2Mile2FinalMins, runner2Mile2FinalSecs);
 		System.out.printf("%-20s%d:%06.3f\n", "Split Three", runner2Mile3FinalMins, runner2Mile3FinalSecs);
 
 		// runner three
 
 		// getting first and last name runner
-		System.out.print("\n\n\nPlease enter Name of Runner3(First name Last name): ");
+		System.out.print("\n\nPlease enter Name of Runner3(First name Last name): ");
 		fullName = in.nextLine();
 		String runner3FirstName = fullName.substring(0, fullName.indexOf(" "));
-		String runner3LastName = fullName.substring(fullName.indexOf(" "));
+		String runner3LastName = fullName.substring(fullName.indexOf(" ")+1);
 		// getting mile one numbers
 		System.out.print(runner3FirstName + ", please eneter your Mile 1 Time (mm:ss.sss): ");
 		String runner3Mile1 = in.nextLine();
@@ -179,16 +189,16 @@ public class CrossCountry {
 		System.out.println("\n\nRunner Three Breakdown");
 		System.out.println("#################\n");
 		System.out.printf("%-20s%s\n", "Runner Name", runner3LastName + "," + runner3FirstName);
-		System.out.printf("%-20s%d:%06.3f\n", "Split One", runner3Mile1FinalMins, runner3Mile1FinalSecs);
+		System.out.printf("\n%-20s%d:%06.3f\n", "Split One", runner3Mile1FinalMins, runner3Mile1FinalSecs);
 		System.out.printf("%-20s%d:%06.3f\n", "Split Two", runner3Mile2FinalMins, runner3Mile2FinalSecs);
 		System.out.printf("%-20s%d:%06.3f\n", "Split Three", runner3Mile3FinalMins, runner3Mile3FinalSecs);
 
 		// getting first and last name runner 4
 
-		System.out.print("Please enter Name of Runner4(First name Last name): ");
+		System.out.print("\n\nPlease enter Name of Runner4(First name Last name): ");
 		fullName = in.nextLine();
 		String runner4FirstName = fullName.substring(0, fullName.indexOf(" "));
-		String runner4LastName = fullName.substring(fullName.indexOf(" "));
+		String runner4LastName = fullName.substring(fullName.indexOf(" ")+1);
 		// getting mile one numbers
 		System.out.print(runner4FirstName + ", please eneter your Mile 1 Time (mm:ss.sss): ");
 		String runner4Mile1 = in.nextLine();
@@ -212,7 +222,7 @@ public class CrossCountry {
 		double runner4Mile3Seconds;
 		colon = runner4Mile3.indexOf(":");
 		runner4Mile3Minutes = Integer.parseInt(runner4Mile3.substring(0, colon));
-		runner4Mile3Seconds = Double.parseDouble(runner1Mile3.substring(colon + 1));
+		runner4Mile3Seconds = Double.parseDouble(runner4Mile3.substring(colon + 1));
 
 		// finding totals in seconds
 		double runner4Mile1Sec = runner4Mile1Minutes * SECONDS_IN_MINUTE + runner4Mile1Seconds;
@@ -237,15 +247,15 @@ public class CrossCountry {
 		System.out.println("\n\nRunner Four Breakdown");
 		System.out.println("#################\n");
 		System.out.printf("%-20s%s\n", "Runner Name", runner4LastName + "," + runner4FirstName);
-		System.out.printf("%-20s%d:%06.3f\n", "Split One", runner4Mile1FinalMins, runner4Mile1FinalSecs);
+		System.out.printf("\n%-20s%d:%06.3f\n", "Split One", runner4Mile1FinalMins, runner4Mile1FinalSecs);
 		System.out.printf("%-20s%d:%06.3f\n", "Split Two", runner4Mile2FinalMins, runner4Mile2FinalSecs);
 		System.out.printf("%-20s%d:%06.3f\n", "Split Three", runner4Mile3FinalMins, runner4Mile3FinalSecs);
 
 		// runner 5
-		System.out.print("Please enter Name of Runner5(First name Last name): ");
+		System.out.print("\n\nPlease enter Name of Runner5(First name Last name): ");
 		fullName = in.nextLine();
 		String runner5FirstName = fullName.substring(0, fullName.indexOf(" "));
-		String runner5LastName = fullName.substring(fullName.indexOf(" "));
+		String runner5LastName = fullName.substring(fullName.indexOf(" ")+1);
 		// getting mile one numbers
 		System.out.print(runner5FirstName + ", please eneter your Mile 1 Time (mm:ss.sss): ");
 		String runner5Mile1 = in.nextLine();
@@ -294,11 +304,12 @@ public class CrossCountry {
 		System.out.println("\n\nRunner Five Breakdown");
 		System.out.println("#################\n");
 		System.out.printf("%-20s%s\n", "Runner Name", runner5LastName + "," + runner5FirstName);
-		System.out.printf("%-20s%d:%06.3f\n", "Split One", runner5Mile1FinalMins, runner5Mile1FinalSecs);
+		System.out.printf("\n%-20s%d:%06.3f\n", "Split One", runner5Mile1FinalMins, runner5Mile1FinalSecs);
 		System.out.printf("%-20s%d:%06.3f\n", "Split Two", runner5Mile2FinalMins, runner5Mile2FinalSecs);
 		System.out.printf("%-20s%d:%06.3f\n", "Split Three", runner5Mile3FinalMins, runner5Mile3FinalSecs);
 
-		System.out.printf("%-20s%15s%15s%15s\n", "Runner Name", "Mile One", "Mile Two", "Mile Three");
+		System.out.printf("\n\n%-11s*****Summary of the Five Runners******\n","");
+		System.out.printf("\n%-20s%15s%15s%15s\n", "Runner Name", "Mile One", "Mile Two", "Mile Three");
 		
 		System.out.printf("%-20s%8d:%06.3f%8d:%06.3f%8d:%06.3f\n", runner1LastName + "," + runner1FirstName,
 				runner1Mile1FinalMins, runner1Mile1FinalSecs, runner1Mile2FinalMins, runner1Mile2FinalSecs,
@@ -321,6 +332,8 @@ public class CrossCountry {
 				runner5Mile3FinalMins, runner5Mile3FinalSecs);
 
 		in.close();
+		
+		//add finish time for tabel and indivisual erunner
 
 	}
 
