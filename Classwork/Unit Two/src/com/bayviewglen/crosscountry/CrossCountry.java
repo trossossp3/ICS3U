@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Name: CrossCountry
  * Author:Trent Rossos
  * Date: October 10, 2018
- * Description: This program will output 5 cross country runner's mile splits
+ * Description: This program will output 5 cross country runner's mile splits given a) there first mile time b) there time to end of mile two c) total time.
  * 
  */
 public class CrossCountry {
