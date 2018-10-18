@@ -14,7 +14,7 @@ public class CrossCountry {
 
 		Scanner in = new Scanner(System.in);
 
-		final int SECONDS_IN_MINUTE = 60;
+		final int SECONDS_IN_MINUTE = (Integer) null;
 
 		// getting first and last name runner 1
 		System.out.print("Please enter Name of Runner1(First name Last name ex. Trent Rossos): ");
