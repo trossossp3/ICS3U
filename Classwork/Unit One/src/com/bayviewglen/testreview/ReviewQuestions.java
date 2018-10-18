@@ -56,12 +56,53 @@ public class ReviewQuestions {
 		System.out.println(s1==s2);
 		
 		
+		int number = 123232;
+		int digit1 = number/100000;
+		int digit6 = number%10;
+		int digit2 = number/10000%10;
+		int digit3 = number/1000%10;
+		int digit4 = number/100%10;
+		int digit5 = number/10%10;
+		System.out.println(digit1);
+		System.out.println(digit2);
+		System.out.println(digit3);
+		System.out.println(digit4);
+		System.out.println(digit5);
+		System.out.println(digit6);
 		
 		
+		int n1;
+		Integer N1 = new Integer(2);
+		System.out.println(N1);
+		System.out.println();
+		System.out.println(N1.intValue());
+		System.out.println(Integer.MAX_VALUE);
+		
+		double d1 = 1.232;
+		Double D1 = new Double(d1);
+		System.out.println(D1);
+		System.out.println(D1.doubleValue());
+		
+		final int CONSTANT_VALUE = 10;
+		System.out.println(CONSTANT_VALUE);
+		
+		int upper = 10;
+		int lower = 5;
+		
+		int rand = (int) (Math.random()*(upper-lower+1))+lower;
+		System.out.println(rand);
+		
+		//int n2 = 10/0; //arithmetic exception
+		
+		//String s5 = "Happy".substring(10); //String index out of bounds exception
+		
+		String s6 = null;
+		
+		//System.out.println(s6.length());
 		
 		
-		
-		
+		int rand2 = (int) Math.random() * 5;
+		System.out.println("i like caker".substring(rand2));
 		
 	}
 }
