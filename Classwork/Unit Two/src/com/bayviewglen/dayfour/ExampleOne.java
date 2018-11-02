@@ -22,6 +22,10 @@ public class ExampleOne {
 			//a&&false == false
 		//true is 1
 			//a&&true == a
+		//true^2 == true
+			//true&&true == true
+		//!(a&&b) = !a||!b
+		//!(a||b) = !a&&!b
 		System.out.println(a&&(b||c));
 		System.out.println((a&&b)||(a&&c));
 		
@@ -30,6 +34,11 @@ public class ExampleOne {
 		System.out.println(b);
 		System.out.println(b&&true);
 		System.out.println(b&&false);
+		System.out.println();
+		
+		System.out.println(!(x > y || y <= z));
+		System.out.println(x<=y && y > z);
+		
 	}
 
 }
