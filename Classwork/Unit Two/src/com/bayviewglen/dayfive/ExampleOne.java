@@ -65,7 +65,7 @@ public class ExampleOne {
 		System.out.println("3: " + x);
 	}
 	
-	//for non-primative method they have the reference to an object so it changes the object
+	//for non-primative non-immuatble method they have the reference to an object so it changes the object
 
 	
 	public static void mystery2(Dog dog) {

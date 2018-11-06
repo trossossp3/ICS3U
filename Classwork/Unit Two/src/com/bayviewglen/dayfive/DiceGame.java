@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class DiceGame {
 	/**
+	 * @author trossos
 	 * two player game player 1 and player 2 first to go over 50 wins option to roll
 	 * 1 or 2 dice if you roll a 4 or 10 you lose 5
 	 */
