@@ -16,6 +16,7 @@ public class BlackJack {
 		Scanner in = new Scanner(System.in);
 
 		boolean isGameOver = false;
+		
 		while (!isGameOver) {
 			int numAces = 0;
 			String playerHand = "";
@@ -43,7 +44,6 @@ public class BlackJack {
 				String card = getCard();
 
 				playerHand += card + " ";
-
 				if (isAce(card))
 					numAces++;
 
