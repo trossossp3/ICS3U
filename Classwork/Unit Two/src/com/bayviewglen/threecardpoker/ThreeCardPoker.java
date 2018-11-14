@@ -1,11 +1,21 @@
 package com.bayviewglen.threecardpoker;
 
-//http://www.vidpoker.com/threecardpoker/index.htm
+//http://www.vidpoker.com/threecardpoker/index.html
 
 import java.util.Scanner;
 
-public class ThreeCardPoker {
+/**
+ * Name: ThreeCardPoker
+ * 
+ * @author Trent Rossos
+ * 
+ *         Description: This is a 3 card poker simulator
+ * 
+ */
 
+public class ThreeCardPoker {
+	public static final int ANTE_WAGER_MIN = 50;
+	public static final int ANTE_WAGER_MAX = 100;
 	public static final int NUM_SUITS = 4;
 	public static final int NUM_FACES = 13;
 	public static final int PP_FLUSH_ANTE = 4;
@@ -17,6 +27,7 @@ public class ThreeCardPoker {
 	public static final int STRAIGHT_FLUSH_ANTE = 5;
 
 	public static void main(String[] args) {
+		
 		Scanner in = new Scanner(System.in);
 		int playerWallet = 500;
 
@@ -27,31 +38,59 @@ public class ThreeCardPoker {
 			isRoundOver = false;
 			String playerHand = "";
 			String dealerHand = "";
-			String allCards = "";
-			boolean isValidCards = false;
-		//	while (isValidCards) {
-				String playerCard1 = getCard();
-				String playerCard2 = getCard();
-				String playerCard3 = getCard();
+			String[] allCards = new String[6];
+			int numCards = 0;
 
-				playerHand += playerCard1 + " " + playerCard2 + " " + playerCard3;
+			String playerCard1 = getCard();
+			allCards[0] = playerCard1;
+			numCards++;
+			String playerCard2 = getCard();
+			allCards[1] = playerCard2;
+			numCards++;
+			if (!isValidCard(allCards,numCards)) {
+				playerCard2 = getCard();
+				allCards[1] = playerCard2;
+			}
+			String playerCard3 = getCard();
+			allCards[2] = playerCard3;
+			numCards++;
+			if (!isValidCard(allCards,numCards)) {
+				playerCard3 = getCard();
+				allCards[2] = playerCard2;
+			}
 
-				String dealerCard1 = getCard();
-				String dealerCard2 = getCard();
-				String dealerCard3 = getCard();
+			playerHand += playerCard1 + " " + playerCard2 + " " + playerCard3;
 
-				dealerHand += dealerCard1 + " " + dealerCard2 + " " + dealerCard3;
-				//isValidCards = validateCard(playerCard1,playerCard2,playerCard2,dealerCard1,dealerCard2,dealerCard3);
-				
-			//}
+			String dealerCard1 = getCard();
+			allCards[3] = dealerCard1;
+			numCards++;
+			if (!isValidCard(allCards,numCards)) {
+				dealerCard1 = getCard();
+				allCards[3] = dealerCard1;
+			}
+			String dealerCard2 = getCard();
+			allCards[4] = dealerCard2;
+			numCards++;
+			if (!isValidCard(allCards,numCards)) {
+				dealerCard2 = getCard();
+				allCards[4] = dealerCard2;
+			}
+			String dealerCard3 = getCard();
+			allCards[5] = dealerCard3;
+			numCards++;
+			if (!isValidCard(allCards,numCards)) {
+				dealerCard3 = getCard();
+				allCards[5] = dealerCard3;
+			}
+			dealerHand += dealerCard1 + " " + dealerCard2 + " " + dealerCard3;
 
 			int anteWager = getAnteWager(in, playerWallet);
 			playerWallet -= anteWager;
+
 			int pairPlusWager = getPairPlus(in, playerWallet, anteWager);
 			playerWallet -= pairPlusWager;
 			while (!isRoundOver) {
 
-				allCards = playerHand + " " + dealerHand;
 				System.out.println(playerHand);
 
 				boolean continueRound = continueRound(in, playerWallet); // improve wording of this
@@ -67,8 +106,8 @@ public class ThreeCardPoker {
 					int anteWinnings = 0;
 					if (!isDealerActive) { // if the dealer does not have queen high
 						System.out.println("The dealer does not have queen high");
-						anteWinnings = anteBonus(anteWager, playerCard1, playerCard2, playerCard3);
-						System.out.println("You got: " + anteWinnings + " from the ante bonus");
+						// anteWinnings = anteBonus(anteWager, playerCard1, playerCard2, playerCard3);
+						// System.out.println("You got: " + anteWinnings + " from the ante bonus");
 						anteWinnings += anteWager * 2;
 						System.out.println("You won: " + anteWinnings + " from the ante winnings");
 						int pairPlusWinnings = pairPlusWinnings(pairPlusWager, playerCard1, playerCard2, playerCard3);
@@ -82,8 +121,8 @@ public class ThreeCardPoker {
 						int winner = checkWinner(playerCard1, playerCard2, playerCard3, dealerCard1, dealerCard2,
 								dealerCard3);
 						if (winner == 1) {
-							anteWinnings = anteBonus(anteWager, playerCard1, playerCard2, playerCard3);
-							System.out.println("You got: " + anteWinnings + " from the ante bonus");
+							// anteWinnings = anteBonus(anteWager, playerCard1, playerCard2, playerCard3);
+							// System.out.println("You got: " + anteWinnings + " from the ante bonus");
 							anteWinnings += anteWager * 2;
 							System.out.println("You won: " + anteWinnings + " from the ante winnings");
 							int pairPlusWinnings = pairPlusWinnings(pairPlusWager, playerCard1, playerCard2,
@@ -94,8 +133,8 @@ public class ThreeCardPoker {
 							isGameOver = playNextRound(in, playerWallet);
 							isRoundOver = true;
 						} else if (winner == 2) {
-							anteWinnings = anteBonus(anteWager, playerCard1, playerCard2, playerCard3);
-							System.out.println("You got: " + anteWinnings + " from the ante bonus");
+							// anteWinnings = anteBonus(anteWager, playerCard1, playerCard2, playerCard3);
+							// System.out.println("You got: " + anteWinnings + " from the ante bonus");
 							System.out.println("You won: " + anteWinnings + " from the ante winnings");
 							int pairPlusWinnings = pairPlusWinnings(pairPlusWager, playerCard1, playerCard2,
 									playerCard3);
@@ -105,8 +144,8 @@ public class ThreeCardPoker {
 							isGameOver = playNextRound(in, playerWallet);
 							isRoundOver = true;
 						} else {
-							anteWinnings = anteBonus(anteWager, playerCard1, playerCard2, playerCard3);
-							System.out.println("You got: " + anteWinnings + " from the ante bonus");
+							// anteWinnings = anteBonus(anteWager, playerCard1, playerCard2, playerCard3);
+							// System.out.println("You got: " + anteWinnings + " from the ante bonus");
 							anteWinnings += anteWager;
 							System.out.println("You won: " + anteWinnings + " from the ante winnings");
 							int pairPlusWinnings = pairPlusWinnings(pairPlusWager, playerCard1, playerCard2,
@@ -120,9 +159,10 @@ public class ThreeCardPoker {
 					}
 
 				} else if (!continueRound && pairPlusWager > 0) {
-					int pairPlusWinnings = pairPlusWinnings(pairPlusWager, playerCard1, playerCard2, playerCard3);
-					System.out.println("you won: $" + pairPlusWinnings + " from the Pair Plus");
-					System.out.println("you have: $" + (playerWallet + pairPlusWinnings));
+					// int pairPlusWinnings = pairPlusWinnings(pairPlusWager, playerCard1,
+					// playerCard2, playerCard3);
+					// System.out.println("you won: $" + pairPlusWinnings + " from the Pair Plus");
+					System.out.println("you have: $" + (playerWallet));
 					isGameOver = playNextRound(in, playerWallet);
 					isRoundOver = true;
 				} else {
@@ -134,6 +174,34 @@ public class ThreeCardPoker {
 
 	}
 
+	/**
+	 * 
+	 * @param allCards
+	 * @return if the card delt is valid and unique
+	 * 
+	 */
+
+	private static boolean isValidCard(String[] allCards, int numElements) {
+		
+		for (int i = 0; i < numElements; i++) {
+			if (checkFace(allCards[i]) == checkFace(allCards[i+1])) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * 
+	 * @param playerCard1
+	 * @param playerCard2
+	 * @param playerCard3
+	 * @param dealerCard1
+	 * @param dealerCard2
+	 * @param dealerCard3
+	 * @return
+	 * @author trossos
+	 */
 	private static int checkWinner(String playerCard1, String playerCard2, String playerCard3, String dealerCard1,
 			String dealerCard2, String dealerCard3) {
 
@@ -158,10 +226,15 @@ public class ThreeCardPoker {
 
 	// checks if the dealer has queen high or above
 	private static boolean queenHigh(String dealerCard1, String dealerCard2, String dealerCard3) {
-		if (checkFace(dealerCard1) >= 12 || checkFace(dealerCard2) >= 12 || checkFace(dealerCard2) >= 12) {
+		int handValue = checkHand(dealerCard1, dealerCard2, dealerCard3);
+		if (handValue == 0) {
+			if (checkFace(dealerCard1) >= 12 || checkFace(dealerCard2) >= 12 || checkFace(dealerCard3) >= 12) {
+				return true;
+			} else {
+				return false;
+			}
+		}else {
 			return true;
-		} else {
-			return false;
 		}
 	}
 
@@ -206,13 +279,13 @@ public class ThreeCardPoker {
 
 		if (handCode == 3) { // straight
 			System.out.println("You have a straight");
-			return STRAIGHT_ANTE * anteWager;
+			return STRAIGHT_ANTE * anteWager + anteWager;
 		} else if (handCode == 4) { // 3 of a kind
 			System.out.println("You have 3 of a kind");
-			return THREE_OF_A_KIND_ANTE * anteWager;
+			return THREE_OF_A_KIND_ANTE * anteWager + anteWager;
 		} else if (handCode == 5) { // straight flush
 			System.out.println("You have a straight flush");
-			return STRAIGHT_FLUSH_ANTE * anteWager;
+			return STRAIGHT_FLUSH_ANTE * anteWager + anteWager;
 		} else {
 			return 0;
 		}
@@ -231,9 +304,10 @@ public class ThreeCardPoker {
 		boolean isValidInput = false;
 		while (!isValidInput) {
 			String temp = in.nextLine().toLowerCase();
-			if (temp.equals("yes") || temp.equals("y"))
+			if (temp.equals("yes") || temp.equals("y")) {
+				System.out.println("******************");
 				return false;
-			else if (temp.equals("no") || temp.equals("n"))
+			} else if (temp.equals("no") || temp.equals("n"))
 				return true;
 			else
 				System.out.print("Play Next Round? (Y/N): ");
@@ -261,16 +335,16 @@ public class ThreeCardPoker {
 			return PP_STRAIGHT_ANTE * pairPluseWager;
 
 		} else if (handCode == 4) { // 3 of a kind
-			return PP_THREE_OF_A_KIND_ANTE * pairPluseWager;
+			return PP_THREE_OF_A_KIND_ANTE * pairPluseWager + pairPluseWager;
 		} else if (handCode == 5) { // straight flush
 			System.out.println("You have a straight flush");
-			return PP_STRAIGHT_FLUSH_ANTE * pairPluseWager;
+			return PP_STRAIGHT_FLUSH_ANTE * pairPluseWager + pairPluseWager;
 		} else if (handCode == 2) { // flush
 			System.out.println("You have a flush");
-			return PP_FLUSH_ANTE * pairPluseWager;
+			return PP_FLUSH_ANTE * pairPluseWager + pairPluseWager;
 		} else if (handCode == 1) { // pair
 			System.out.println("You have a pair");
-			return pairPluseWager;
+			return pairPluseWager * 2;
 		} else {
 			return 0;
 		}
@@ -333,38 +407,54 @@ public class ThreeCardPoker {
 	}
 
 	private static int getPairPlus(Scanner in, int playerWallet, int anteWager) {
+		boolean wantPP = true;
+		System.out.print("Do you want to play Pair Plus (Y/N): ");
+		while (wantPP) {
 
-		if (playerWallet == 0) {
-			System.out.println("you do not have enough money for a pair plus");
-			return 0;
-		} else {
-			System.out.print("Please enter a pair plus wager ");
-		}
-		boolean isValid = false;
-		while (!isValid) {
-			try {
-				int x = Integer.parseInt(in.nextLine());
+			String temp = in.nextLine().toLowerCase();
+			if (temp.equals("yes") || temp.equals("y")) {
+				wantPP = true;
+			} else if (temp.equals("no") || temp.equals("n")) {
+				wantPP = false;
+			} else {
+				System.out.print("Do you want to play Pair Plus (Y/N): ");
+			}
 
-				if (x <= playerWallet - anteWager) {
-					return x;
+			if (wantPP) {
+				if (playerWallet == 0) {
+					System.out.println("you do not have enough money for a pair plus");
+					return 0;
 				} else {
 					System.out.print("Please enter a pair plus wager ");
 				}
+				boolean isValid = false;
+				while (!isValid) {
+					try {
+						int x = Integer.parseInt(in.nextLine());
 
-			} catch (Exception ex) {
-				System.out.print("Please enter a pair plus wager ");
+						if (x <= playerWallet - anteWager) {
+							return x;
+						} else {
+							System.out.print("Please enter a pair plus wager ");
+						}
+
+					} catch (Exception ex) {
+						System.out.print("Please enter a pair plus wager ");
+					}
+				}
 			}
 		}
 		return 0;
+
 	}
 
 	private static int getAnteWager(Scanner in, int playerWallet) {
-		System.out.print("Please enter an ante wager ");
+		System.out.print("Please enter an ante wager between $50-$100");
 		boolean isValid = false;
 		while (!isValid) {
 			try {
 				int x = Integer.parseInt(in.nextLine());
-				if (x <= playerWallet) {
+				if (x <= playerWallet && x > 0 && x <= ANTE_WAGER_MAX && x >= ANTE_WAGER_MIN) {
 					return x;
 				} else {
 					System.out.print("Please enter an ante wager ");
@@ -374,6 +464,7 @@ public class ThreeCardPoker {
 				System.out.print("Please enter an ante wager ");
 			}
 		}
+
 		return 0;
 	}
 
