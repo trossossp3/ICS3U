@@ -1,9 +1,9 @@
 package com.bayviewglen.threecardpoker;
 
 //http://www.vidpoker.com/threecardpoker/index.html
-//check the amounts of money displayed
 
-//i need to fix getPairPlus
+//does the ante winnigns include your bet
+// so if u bet 100 are the winnings 200
 
 import java.util.Scanner;
 
@@ -178,9 +178,10 @@ public class ThreeCardPoker {
 	}
 
 	/**
+	 * This method is used to see if a dealt card has not been dealt already
 	 * 
-	 * @param allCards
-	 * @return if the card delt is valid and unique
+	 * @param allCards a string array how all cards in play
+	 * @return if the card dealt is valid and unique
 	 * 
 	 */
 
@@ -197,6 +198,7 @@ public class ThreeCardPoker {
 	}
 
 	/**
+	 * This method is used to return the winner of the round, the player or dealer
 	 * 
 	 * @param playerCard1
 	 * @param playerCard2
@@ -204,43 +206,60 @@ public class ThreeCardPoker {
 	 * @param dealerCard1
 	 * @param dealerCard2
 	 * @param dealerCard3
-	 * @return
-	 * @author trossos
+	 * @return the winner of the round
+	 * 
 	 */
 	private static int checkWinner(String playerCard1, String playerCard2, String playerCard3, String dealerCard1,
 			String dealerCard2, String dealerCard3) {
 
-		int playerHandCode = checkHand(playerCard1, playerCard2, playerCard3);
-		int dealerHandCode = checkHand(dealerCard1, dealerCard2, dealerCard3);
+		int playerHandRanking = checkHand(playerCard1, playerCard2, playerCard3);
+		int dealerHandRanking = checkHand(dealerCard1, dealerCard2, dealerCard3);
 		/*
 		 * 0 = push 1 = player 2 = dealer
 		 */
 
-		if (playerHandCode > dealerHandCode) {
+		if (playerHandRanking > dealerHandRanking) {
 			System.out.println("player won");
 			return 1;
-		} else if (playerHandCode < dealerHandCode) {
+		} else if (playerHandRanking < dealerHandRanking) {
 			System.out.println("Dealer won");
 			return 2;
 		} else {
-			// player =0
-			// dealer =1
-			// push = 2
+
 			int winner = checkHigherHand(playerCard1, playerCard2, playerCard3, dealerCard1, dealerCard2, dealerCard3,
-					playerHandCode, dealerHandCode);
+					playerHandRanking, dealerHandRanking);
 			System.out.println("It was a push");
 			return 0;
 		}
 
 	}
 
+	/**
+	 * This method is used to see who has a higher hand when the player and dealer
+	 * have the same hand-rankings
+	 * 
+	 * @param playerCard1
+	 * @param playerCard2
+	 * @param playerCard3
+	 * @param dealerCard1
+	 * @param dealerCard2
+	 * @param dealerCard3
+	 * @param playerHandRanking
+	 * @param dealerHandRanking
+	 * @return checks who has a better hand
+	 * 
+	 * 
+	 */
 	private static int checkHigherHand(String playerCard1, String playerCard2, String playerCard3, String dealerCard1,
-			String dealerCard2, String dealerCard3, int playerHandCode, int dealerHandCode) {
+			String dealerCard2, String dealerCard3, int playerHandRanking, int dealerHandRanking) {
 
+		// player =0
+		// dealer =1
+		// push = 2
 		int playerHighCard = 0;
 		int dealerHighCard = 0;
 
-		if (playerHandCode == 1 && dealerHandCode == 1) {
+		if (playerHandRanking == 1 && dealerHandRanking == 1) {
 			int playerCardValue1 = checkFace(playerCard1);
 			int playerCardValue2 = checkFace(playerCard2);
 			int playerCardValue3 = checkFace(playerCard3);
@@ -285,10 +304,19 @@ public class ThreeCardPoker {
 		}
 	}
 
-	private static int getHighCard(String playerCard1, String playerCard2, String playerCard3) {
-		int first = checkFace(playerCard1);
-		int second = checkFace(playerCard2);
-		int third = checkFace(playerCard3);
+	/**
+	 * This method is used to find the greatest card value out of three cards
+	 * 
+	 * @param Card1
+	 * @param Card2
+	 * @param Card3
+	 * @return the highest of the three card values
+	 * 
+	 */
+	private static int getHighCard(String Card1, String Card2, String Card3) {
+		int first = checkFace(Card1);
+		int second = checkFace(Card2);
+		int third = checkFace(Card3);
 		if (first > second && first > third) {
 			return first;
 		} else if (second > first && second > third) {
@@ -300,7 +328,16 @@ public class ThreeCardPoker {
 
 	}
 
-	// checks if the dealer has queen high or above
+	/**
+	 * This method is used to determine if the dealer has a hand of at least queen
+	 * high
+	 * 
+	 * @param dealerCard1
+	 * @param dealerCard2
+	 * @param dealerCard3
+	 * @return boolean if the dealer has at least a queen high
+	 * 
+	 */
 	private static boolean queenHigh(String dealerCard1, String dealerCard2, String dealerCard3) {
 		int handValue = checkHand(dealerCard1, dealerCard2, dealerCard3);
 		if (handValue == 0) {
@@ -314,15 +351,26 @@ public class ThreeCardPoker {
 		}
 	}
 
-	private static int checkHand(String Card1, String Card2, String Card3) {
+	/**
+	 * This method is used to determine the hand ranking of the inputed three
+	 * string. An int value is assigned to each hand ranking: pair = 1, flush = 2,
+	 * straight = 3, three of a kind = 4, straight flush = 5
+	 * 
+	 * @param card1
+	 * @param card2
+	 * @param card3
+	 * @return int the hand ranking
+	 * 
+	 */
+	private static int checkHand(String card1, String card2, String card3) {
 		int handValue = 0;
-		String card1Suit = Card1.substring(Card1.length() - 1);
-		String card2Suit = Card2.substring(Card2.length() - 1);
-		String card3Suit = Card3.substring(Card3.length() - 1);
+		String card1Suit = card1.substring(card1.length() - 1);
+		String card2Suit = card2.substring(card2.length() - 1);
+		String card3Suit = card3.substring(card3.length() - 1);
 
-		int card1Face = checkFace(Card1);
-		int card2Face = checkFace(Card2);
-		int card3Face = checkFace(Card3);
+		int card1Face = checkFace(card1);
+		int card2Face = checkFace(card2);
+		int card3Face = checkFace(card3);
 
 		if (card1Face == card2Face || card1Face == card3Face || card2Face == card3Face) {
 			// System.out.println("you have a pair");
@@ -349,9 +397,19 @@ public class ThreeCardPoker {
 		return handValue;
 	}
 
-	private static int anteBonus(int anteWager, String playerCard1, String playerCard2, String playerCard3) {
+	/**
+	 * This method is used to determine the ante bonus
+	 * 
+	 * @param anteWager
+	 * @param playerCard1
+	 * @param playerCard2
+	 * @param playerCard3
+	 * @return int the ante bonus
+	 * 
+	 */
+	private static int anteBonus(int anteWager, String Card1, String Card2, String Card3) {
 
-		int handCode = checkHand(playerCard1, playerCard2, playerCard3);
+		int handCode = checkHand(Card1, Card2, Card3);
 
 		if (handCode == 3) { // straight
 			System.out.println("You have a straight");
@@ -368,10 +426,18 @@ public class ThreeCardPoker {
 
 	}
 
+	/**
+	 * This method determines if the player can and/or wants to play the next round
+	 * 
+	 * @param in
+	 * @param playerWallet
+	 * @return boolean if the can and/or wants to play next round
+	 * 
+	 */
+
 	private static boolean playNextRound(Scanner in, int playerWallet) {
 
-		// add a display table
-		if (playerWallet >= 50) {
+		if (playerWallet < 50) {
 			System.out.println("you are out of money");
 			return true;
 		}
@@ -393,12 +459,13 @@ public class ThreeCardPoker {
 	}
 
 	/**
+	 * This method determines the pair plus winnings
 	 * 
 	 * @param pairPlusWager
 	 * @param playerCard1
 	 * @param playerCard2
 	 * @param playerCard3
-	 * @return amount of money won from the pair pluse
+	 * @return int pair plus winnings
 	 * 
 	 */
 
@@ -428,21 +495,22 @@ public class ThreeCardPoker {
 	}
 
 	/**
+	 * This method is used to determine the face value of a card
 	 * 
-	 * @param playerCard
-	 * @return the face of the inputed card
+	 * @param card
+	 * @return int face value
 	 * 
 	 */
-	private static int checkFace(String playerCard) {
+	private static int checkFace(String card) {
 		int cardFace = 0;
 		try {
-			cardFace = Integer.parseInt(playerCard.substring(0, playerCard.length() - 1));
+			cardFace = Integer.parseInt(card.substring(0, card.length() - 1));
 		} catch (Exception ex) {
-			if (playerCard.substring(0, playerCard.length() - 1).equals("J")) {
+			if (card.substring(0, card.length() - 1).equals("J")) {
 				cardFace = 11;
-			} else if (playerCard.substring(0, playerCard.length() - 1).equals("Q")) {
+			} else if (card.substring(0, card.length() - 1).equals("Q")) {
 				cardFace = 12;
-			} else if (playerCard.substring(0, playerCard.length() - 1).equals("K")) {
+			} else if (card.substring(0, card.length() - 1).equals("K")) {
 				cardFace = 13;
 			} else {
 				cardFace = 14;
@@ -452,19 +520,28 @@ public class ThreeCardPoker {
 	}
 
 	/**
+	 * This method is used to determine if three card values are in sequence
 	 * 
 	 * @param card1Face
 	 * @param card2Face
 	 * @param card3Face
-	 * @return if it is a straight
+	 * @return boolean if it is a straight
 	 * 
 	 */
 	private static boolean isStraight(int card1Face, int card2Face, int card3Face) {
 		int min = Math.min(card1Face, Math.min(card2Face, card3Face));
 		int max = Math.max(card1Face, Math.max(card2Face, card3Face));
-		return max - min == 2 && card1Face != card2Face && card3Face != card3Face && card2Face != card3Face;
+		return max - min == 2 && card1Face != card2Face && card3Face != card1Face && card2Face != card3Face;
 	}
 
+	/**
+	 * This method determines if the player would like to place a play wager or fold
+	 * 
+	 * @param in
+	 * @param playerWallet
+	 * @return boolean if the player would like to bet or fold
+	 * 
+	 */
 	private static boolean continueRound(Scanner in, int playerWallet) {
 		System.out.print("Would you like to bet or fold (b/f): ");
 
@@ -483,6 +560,16 @@ public class ThreeCardPoker {
 
 	}
 
+	/**
+	 * This method determines if the player would like to play Pair plus and gets
+	 * their wager
+	 * 
+	 * @param in
+	 * @param playerWallet
+	 * @param anteWager
+	 * @return int pair plus wager
+	 * 
+	 */
 	private static int getPairPlus(Scanner in, int playerWallet, int anteWager) {
 		boolean wantPP = false;
 		System.out.print("Do you want to play Pair Plus (Y/N): ");
@@ -525,6 +612,15 @@ public class ThreeCardPoker {
 
 	}
 
+	/**
+	 * This method gets the player's ante wager
+	 * 
+	 * @param in
+	 * @param playerWallet
+	 * @return int ante wager
+	 * 
+	 */
+
 	private static int getAnteWager(Scanner in, int playerWallet) {
 		System.out.print("Please enter an ante wager between $50-$100: ");
 		boolean isValid = false;
@@ -545,10 +641,23 @@ public class ThreeCardPoker {
 		return 0;
 	}
 
+	/**
+	 * This method creates a playing card
+	 * 
+	 * @return a card with suit and face
+	 * 
+	 */
+
 	public static String getCard() {
 		return getFace() + getSuit();
 	}
 
+	/**
+	 * This method generates a face for a card
+	 * 
+	 * @return int card face
+	 * 
+	 */
 	public static String getFace() {
 		int x = (int) (Math.random() * NUM_FACES) + 2;
 
@@ -565,6 +674,11 @@ public class ThreeCardPoker {
 
 	}
 
+	/**
+	 * This method generates a suit for a card
+	 * 
+	 * @return card suit
+	 */
 	public static String getSuit() {
 		int x = (int) (Math.random() * NUM_SUITS);
 		if (x == 0)
