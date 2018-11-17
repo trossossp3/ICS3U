@@ -1,30 +1,27 @@
 package com.bayviewglen.threecardpoker;
 
 public class test {
-
-	public static void main(String[] args) {
-		int a = 2;
-		int b = 3;
-		int c = 5;
-		int min = Math.min(a, Math.min(b, c));
-		int max = Math.max(a, Math.max(b, c));
-		System.out.println(max - min == 2 && a != b && a != c && b != c);
-		System.out.println(queenHigh("2S", "2H", "QS"));
-		String[] arr = {"2S","2S"};
-		System.out.println(isValidCard(arr));
-		
+	public static boolean isValidCard(String[] arr, int numElements) {
+		for (int i = 0; i < arr.length-1; i++) {
+	        for (int j = i+1; j < arr.length; j++) {
+	             if (arr[i] == arr[j]) {
+	                 return false;
+	             }
+	        }
+	    }              
+	    return true;     
 	}
 
-	private static int checkFace(String playerCard) {
+	public static int checkFace(String card) {
 		int cardFace = 0;
 		try {
-			cardFace = Integer.parseInt(playerCard.substring(0, playerCard.length() - 1));
+			cardFace = Integer.parseInt(card.substring(0, card.length() - 1));
 		} catch (Exception ex) {
-			if (playerCard.substring(0, playerCard.length() - 1).equals("J")) {
+			if (card.substring(0, card.length() - 1).equals("J")) {
 				cardFace = 11;
-			} else if (playerCard.substring(0, playerCard.length() - 1).equals("Q")) {
+			} else if (card.substring(0, card.length() - 1).equals("Q")) {
 				cardFace = 12;
-			} else if (playerCard.substring(0, playerCard.length() - 1).equals("K")) {
+			} else if (card.substring(0, card.length() - 1).equals("K")) {
 				cardFace = 13;
 			} else {
 				cardFace = 14;
@@ -33,21 +30,8 @@ public class test {
 		return cardFace;
 	}
 
-	private static boolean queenHigh(String dealerCard1, String dealerCard2, String dealerCard3) {
-		if (checkFace(dealerCard1) >= 12 || checkFace(dealerCard2) >= 12 || checkFace(dealerCard3) >= 12) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	private static boolean isValidCard(String[] allCards) {
-		boolean isValid = true;
-		for (int i = 0; i < allCards.length - 1; i++) {
-			if (checkFace(allCards[i]) == checkFace(allCards[i + 1])) {
-				return false;
-			}
-		}
-		return true;
+	public static void main(String[] args) {
+		String[] arr = {"10D", "QC", "10D"};		
+		System.out.println(isValidCard(arr , 3));
 	}
 }
