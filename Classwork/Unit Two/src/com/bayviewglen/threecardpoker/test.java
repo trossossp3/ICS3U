@@ -12,26 +12,33 @@ public class test {
 	    return true;     
 	}
 
-	public static int checkFace(String card) {
-		int cardFace = 0;
-		try {
-			cardFace = Integer.parseInt(card.substring(0, card.length() - 1));
-		} catch (Exception ex) {
-			if (card.substring(0, card.length() - 1).equals("J")) {
-				cardFace = 11;
-			} else if (card.substring(0, card.length() - 1).equals("Q")) {
-				cardFace = 12;
-			} else if (card.substring(0, card.length() - 1).equals("K")) {
-				cardFace = 13;
-			} else {
-				cardFace = 14;
+	public static boolean isStraight(int card1Face, int card2Face, int card3Face) {
+
+		int min = Math.min(card1Face, Math.min(card2Face, card3Face));
+		int max = Math.max(card1Face, Math.max(card2Face, card3Face));
+		if (max - min == 2 && card1Face != card2Face && card3Face != card1Face && card2Face != card3Face) {
+			return true;
+		} else {
+			if (card1Face == 14) {
+				card1Face = 1;
 			}
+			if (card2Face == 14) {
+				card2Face = 1;
+			}
+			if (card3Face == 14) {
+				card3Face = 1;
+			}
+			min = Math.min(card1Face, Math.min(card2Face, card3Face));
+			max = Math.max(card1Face, Math.max(card2Face, card3Face));
+			if (max - min == 2 && card1Face != card2Face && card3Face != card1Face && card2Face != card3Face) {
+				return true;
+			}
+			return false;
 		}
-		return cardFace;
 	}
 
 	public static void main(String[] args) {
-		String[] arr = {"10D", "QC", "10D"};		
-		System.out.println(isValidCard(arr , 3));
+		boolean x = isStraight(2,14,3);
+	System.out.println(x);
 	}
 }

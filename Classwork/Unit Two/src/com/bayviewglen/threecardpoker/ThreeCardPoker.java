@@ -99,7 +99,7 @@ public class ThreeCardPoker {
 
 			System.out.println("You have: $" + playerWallet);
 			int anteWager = getAnteWager(in, playerWallet);
-			if(anteWager == 0) {
+			if (anteWager == 0) {
 				isGameOver = true;
 				break;
 			}
@@ -546,9 +546,28 @@ public class ThreeCardPoker {
 	 * 
 	 */
 	public static boolean isStraight(int card1Face, int card2Face, int card3Face) {
+
 		int min = Math.min(card1Face, Math.min(card2Face, card3Face));
 		int max = Math.max(card1Face, Math.max(card2Face, card3Face));
-		return max - min == 2 && card1Face != card2Face && card3Face != card1Face && card2Face != card3Face;
+		if (max - min == 2 && card1Face != card2Face && card3Face != card1Face && card2Face != card3Face) {
+			return true;
+		} else {
+			if (card1Face == 14) {
+				card1Face = 1;
+			}
+			if (card2Face == 14) {
+				card2Face = 1;
+			}
+			if (card3Face == 14) {
+				card3Face = 1;
+			}
+			min = Math.min(card1Face, Math.min(card2Face, card3Face));
+			max = Math.max(card1Face, Math.max(card2Face, card3Face));
+			if (max - min == 2 && card1Face != card2Face && card3Face != card1Face && card2Face != card3Face) {
+				return true;
+			}
+			return false;
+		}
 	}
 
 	/**
@@ -595,8 +614,8 @@ public class ThreeCardPoker {
 
 		boolean wantPP = true;
 		boolean isValid = false;
-		
-		if(playerWallet - MIN_BET <= 0) {
+
+		if (playerWallet - MIN_BET <= 0) {
 			System.out.println("You are not able to play Pair Plus and place a play wager");
 			return 0;
 		}
@@ -653,8 +672,8 @@ public class ThreeCardPoker {
 	 */
 
 	public static int getAnteWager(Scanner in, int playerWallet) {
-		
-		if(playerWallet < MIN_BET*2) {
+
+		if (playerWallet < MIN_BET * 2) {
 			System.out.println("You do not have enough money for a play bet");
 			System.out.println("You lost!");
 			return 0;
