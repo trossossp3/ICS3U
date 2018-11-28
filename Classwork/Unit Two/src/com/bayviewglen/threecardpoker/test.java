@@ -39,6 +39,8 @@ public class test {
 
 	public static void main(String[] args) {
 		boolean x = isStraight(2,14,3);
-	System.out.println(x);
+	for(int i =0; i==10;i++) {
+		System.out.println("hi");
+	}
 	}
 }

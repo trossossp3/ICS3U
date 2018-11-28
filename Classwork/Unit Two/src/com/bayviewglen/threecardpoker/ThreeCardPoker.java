@@ -131,7 +131,7 @@ public class ThreeCardPoker {
 						// anteWinnings = anteBonus(anteWager, playerCard1, playerCard2, playerCard3);
 						// System.out.println("You got: " + anteWinnings + " from the ante bonus");
 
-						System.out.println("You got: " + anteWager + " from the ante returned ante wager");
+						System.out.println("You got: " + anteWager + " from the ante wager");
 						int pairPlusWinnings = pairPlusWinnings(pairPlusWager, playerCard1, playerCard2, playerCard3);
 						System.out.println("You won: " + pairPlusWinnings + " from the pair Plus Winnings");
 						playerWallet += (pairPlusWinnings + anteWinnings);
