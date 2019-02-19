@@ -92,6 +92,16 @@ public class DoubleArraySequence implements Cloneable{
 		manyItems = 0;
 		currentIndex=0;
 	}
+	// The new double array sequence is a copy of the DoubleArraySequence src.
+		public DoubleArraySequence(DoubleArraySequence src){
+			this.data = new double[src.data.length];
+			this.manyItems = src.manyItems;
+			for(int i = 0; i<src.manyItems; i++) {
+				this.data[i] = src.data[i];
+				
+			}
+			
+		}
 /**
 	 * Add a new element to this sequence, after the current element. 
 	 * If the new element would take this sequence beyond its current capacity,
@@ -113,6 +123,21 @@ public class DoubleArraySequence implements Cloneable{
 	 **/
 	public void addAfter(double d){
 		
+		if (manyItems + 1 > data.length) {
+			this.ensureCapacity(data.length);
+		}
+		int i;
+		for (i = currentIndex + 2; i < data.length - 1; i++) {
+			data[i + 1] = data[i];
+		}
+
+		if (isCurrent() && currentIndex + 1 < data.length) {
+			currentIndex++;
+		}
+
+		data[currentIndex] = d;
+
+		manyItems++;
 	}
 /**
 	 * Add a new element to this sequence, before the current element. 
@@ -135,7 +160,23 @@ public class DoubleArraySequence implements Cloneable{
 	 **/
 	public void addBefore(double element){
 		
+		if (manyItems + 1 > data.length) 
+			this.ensureCapacity(data.length * 2);
 		
+		if (!isCurrent()) 
+			currentIndex = 0;
+		
+		currentIndex++;
+
+		for (int i = data.length - 1; i >= currentIndex; i--) {
+			data[i] = data[i - 1];
+		}
+		
+		currentIndex--;
+
+		data[currentIndex] = element;
+
+		manyItems++;
 	}
 /**
 	 * Place the contents of another sequence at the end of this sequence.
@@ -236,6 +277,14 @@ return answer;
 	 *   Indicates insufficient memory for: new int[minimumCapacity].
 	 **/
 	public void ensureCapacity(int minimumCapacity){
+		if (minimumCapacity <= data.length) {
+			return;
+		}
+		double[] temp = new double[minimumCapacity];
+		for(int i = 0; i < minimumCapacity; i++) {
+			temp[i] = data[i];
+		}
+		data = temp;
 		
 	}
 /**
@@ -247,7 +296,7 @@ return answer;
 	 *   the current capacity of this sequence
 	 **/
 	public int getCapacity( ){
-		return -1;
+		return data.length;
 	}
 /**
 	 * Accessor method to get the current element of this sequence. 
@@ -261,7 +310,10 @@ return answer;
 	 *   getCurrent may not be called.
 	 **/
 	public double getCurrent( ){
-		return 0;
+		if(data.length <= currentIndex) {
+			throw new IllegalStateException();
+		}
+		return data[currentIndex];		
 	}
 /**
 	 * Accessor method to determine whether this sequence has a specified 
@@ -272,7 +324,7 @@ return answer;
 	 **/
 	public boolean isCurrent( ){ //see if sequence has a specified current element
 	
-		return true;
+		return (data.length ==0 || manyItems>data.length);
 	}
 /**
 	 * Remove the current element from this sequence.
@@ -299,7 +351,7 @@ return answer;
 	 **/ 
 	public int size( ){ //Determine the number of elements in this sequence.
 	
-		return -1;
+		return manyItems;
 	}
 /**
 	 * Set the current element at the front of this sequence.
@@ -310,6 +362,7 @@ return answer;
 	 *   element).
 	 **/ 
 	public void start( ){
+		currentIndex =0;
 		
 	}
 /**
@@ -326,14 +379,11 @@ return answer;
 	}
 public int getCurrentIndex(){
 		return currentIndex;
-	}
+	} 
 	
 	public void setCurrentIndex(int currentIndex){
 		this.currentIndex = currentIndex;
 	}
 	
-	// The new double array sequence is a copy of the DoubleArraySequence src.
-	public DoubleArraySequence(DoubleArraySequence src){
-		
-	}
+	
 }
