@@ -5,6 +5,7 @@ public class DoubleArraySequenceTest {
 	 */
 	public static void main(String[] args) {
 		int score = 0;
+
 		DoubleArraySequence d1 = new DoubleArraySequence();
 		DoubleArraySequence d2 = new DoubleArraySequence(5);
 		DoubleArraySequence d3 = new DoubleArraySequence(d2);
@@ -91,7 +92,7 @@ public class DoubleArraySequenceTest {
 			d3.addBefore(i);
 		}
 		score += test(d3, new double[] {9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0, 0.0}, 0, 10, 10, 2);
-		
+		//look line above+
 		DoubleArraySequence d4 = DoubleArraySequence.catenation(d2, d3);
 		score += test(d4, new double[] {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0, 0.0}, 16, 16, 16, 5);
 		score += test(d4, new double[] {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0, 0.0}, 16, 16, 25, 5);
